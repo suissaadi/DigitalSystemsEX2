@@ -22,20 +22,27 @@ main:   # Load data from memory
         
 ####################
 # Start of your code
-# set a counter to 0
+
+# save the 2 LSB of t4 in s1
 slli s1 t4 24
 srli s1 s1 24
+
+# hold only the 2 MSB of original t4 in t4
 srli t4 t4 8
-add t1 t1 x0
-addi t1 t1 0
-addi t2 t2 2
-addi t1 t1 1
+
+
+# multiply t3 by s1 and save the result in t6
 mul t5 t3 s1
 and t5 t5 t0
 add t6 t6 t5
+
+#assign the 2 LSB of original t4 to s1
 add s1 t4 x0
+
+# multiply t3 by s1 and save the result in t6
 mul t5 t3 s1
 and t5 t5 t0
+# shift the second product by 8 bits
 slli t5 t5 8
 add t6 t6 t5
 

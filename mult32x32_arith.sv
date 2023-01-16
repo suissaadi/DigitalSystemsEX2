@@ -12,10 +12,10 @@ module mult32x32_arith (
     output logic [63:0] product  // Miltiplication product
 );
 //declaring variables
-logic [7:0] a_mux_result;
-logic [15:0] b_mux_result;
+logic [7:0] a_mux_result=8'b0;
+logic [15:0] b_mux_result=16'b0;
 logic [23:0] mult=24'b0;
-logic [63:0] shifter;
+logic [63:0] shifter=64'b0;
 
 
 

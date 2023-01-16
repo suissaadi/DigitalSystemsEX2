@@ -1,4 +1,4 @@
-// 64-bit ALU test banch
+// 32x32 bit multiplier testbench
 module mult32x32_autotest;
 	logic clk;            // Clock
     logic reset;         // Reset

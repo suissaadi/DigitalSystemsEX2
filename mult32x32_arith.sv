@@ -72,12 +72,13 @@ always_ff @(posedge clk ) begin
     if (!reset) begin
         product <= 64'b0;
     end
-    else if (upd_prod) begin
-        product += shifter;
-    end
     else if (clr_prod) begin
         product <= 64'b0;
     end
+    else if (upd_prod) begin
+        product += shifter;
+    end
+
 
 
     

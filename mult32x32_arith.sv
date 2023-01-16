@@ -11,9 +11,77 @@ module mult32x32_arith (
     input logic clr_prod,        // Clear the product register
     output logic [63:0] product  // Miltiplication product
 );
+//declaring variables
+logic [7:0] a_mux_result;
+logic [15:0] b_mux_result;
+logic [23:0] mult=24'b0;
+logic [63:0] shifter;
+
+
 
 // Put your code here
 // ------------------
+
+
+
+
+//A(32bit) 4 to 1 mux
+always_comb begin
+    case (a_sel)
+        2'b00: a_mux_result = a[7:0];
+        2'b01: a_mux_result = a[15:8];
+        2'b10: a_mux_result = a[23:16];
+        2'b11: a_mux_result = a[31:24];
+    endcase
+end
+
+//B(32bit) 2 to 1 mux
+always_comb begin 
+    case (b_sel)
+        1'b0: b_mux_result = b[15:0];
+        1'b1: b_mux_result = b[31:16];
+    endcase
+end
+
+//16X8 multiplier
+always_ff @(posedge clk) begin
+    if (!reset) begin
+        mult <= 24'b0;
+    end
+    else begin
+        mult <= a_mux_result * b_mux_result;
+    end
+end
+
+//16X8 shifter
+always_comb begin 
+    case (shift_sel)
+        3'b000: shifter = mult;
+        3'b001: shifter = mult << 8;
+        3'b010: shifter = mult << 16;
+        3'b011: shifter = mult << 24;
+        3'b100: shifter = mult << 32;
+        3'b101: shifter = mult << 40;
+        3'b110: shifter = mult << 48;
+        3'b111: shifter = mult << 56;
+    endcase
+end
+
+//64bit register
+always_ff @(posedge clk ) begin
+    if (!reset) begin
+        product <= 64'b0;
+    end
+    else if (upd_prod) begin
+        product += shifter;
+    end
+    else if (clr_prod) begin
+        product <= 64'b0;
+    end
+
+
+    
+end
 
 
 // End of your code

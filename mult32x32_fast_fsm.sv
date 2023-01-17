@@ -43,7 +43,6 @@ module mult32x32_fast_fsm (
 		case (current_state)
 		idle: begin
 			if (start == 1b'1) begin
-				busy = 1'b1;
 				clr_prod = 1'b1;
 				
 				next_state = st_1;

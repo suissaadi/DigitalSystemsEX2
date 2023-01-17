@@ -36,7 +36,9 @@ module mult32x32_test;
 		
 		start = 1'b1;
 		@(posedge clk);
+		start = 1'b0;
 		@(negedge busy);
+		
 	
 	end
 	

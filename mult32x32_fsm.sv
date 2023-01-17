@@ -31,7 +31,7 @@ module mult32x32_fsm (
 
 		// default assignments:
 		next_state = current_state;
-		busy = 1'b0;
+		//busy = 1'b0;
 		a_sel = 2'b00;
 		b_sel = 1'b0;
 		shift_sel = 3'b000;
@@ -41,11 +41,11 @@ module mult32x32_fsm (
 		case (current_state)
 		idle: begin
 			if (start == 1'b1) begin
-				busy = 1'b1;
+			
 				clr_prod = 1'b1;
-				
 				next_state = st_1;
 			end
+			
 		end
 	
 		st_1: begin
@@ -121,7 +121,7 @@ module mult32x32_fsm (
 			b_sel = 1'b1;
 			shift_sel = 3'b101;
 			upd_prod = 1'b1;
-			
+			busy = 1'b0;
 			next_state = idle;
 		end
 	

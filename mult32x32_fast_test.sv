@@ -10,8 +10,58 @@ module mult32x32_fast_test;
     logic [63:0] product; // Miltiplication product
 
 // Put your code here
-// ------------------
+
+	mult32x32 uut  (.clk(clk), 
+					.reset(reset), 
+					.start(start), 
+					.a(a), 
+					.b(b), 
+					.busy(busy), 
+					.product(product)
+	);
+	
+	initial begin
+	
+		clk = 1'b0;
+		start = 1'b0;
+		reset = 1'b1;
+		repeat (4) begin
+			@(posedge clk);
+		end
+		
+		reset = 1'b0;
+		a = 208459867;
+		b = 315157909;
+		@(posedge clk);
+		
+		start = 1'b1;
+		@(posedge clk);
+		@(negedge busy);
+		@(posedge clk);
+		
+		a = 841819;
+		b = 585109;
+		@(posedge clk);
+		
+		start = 1'b1;
+		@(posedge clk);
+		@(negedge busy);
+	
+	end
+	
+	always begin
+		#10 clk = ~clk;
+	end
 
 // End of your code
 
 endmodule
+
+
+// id1 decimal = 208459867, 
+// id1 binary = 1100011011001101100001011011
+// id1 decimal WO upper byte = 841819
+
+// id2 decimal = 315157909
+// id2 binary = 10010110010001110110110010101
+// id2 decimal WO upper byte = 585109

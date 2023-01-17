@@ -15,9 +15,14 @@ module mult32x32_arith (
 logic [7:0] a_mux_result=8'b0;
 logic [15:0] b_mux_result=16'b0;
 logic [23:0] mult=24'b0;
-logic [63:0] shifter=64'b0;
-
-
+logic [63:0] shifter0=63'b0;
+logic [63:0] shifter8=63'b0;
+logic [63:0] shifter16=63'b0;
+logic [63:0] shifter24=63'b0;
+logic [63:0] shifter32=63'b0;
+logic [63:0] shifter40=63'b0;
+logic [63:0] shifter=63'b0;
+logic [63:0] adderReg=63'b0;
 
 // Put your code here
 // ------------------
@@ -44,45 +49,83 @@ always_comb begin
 end
 
 //16X8 multiplier
-always_ff @(posedge clk) begin
+always_comb begin
     if (!reset) begin
-        mult <= 24'b0;
+        mult <= a_mux_result * b_mux_result;
+        
     end
     else begin
-        mult <= a_mux_result * b_mux_result;
+        mult <= 24'b0;
     end
 end
 
-//16X8 shifter
-always_comb begin 
-    case (shift_sel)
-        3'b000: shifter = mult;
-        3'b001: shifter = mult << 8;
-        3'b010: shifter = mult << 16;
-        3'b011: shifter = mult << 24;
-        3'b100: shifter = mult << 32;
-        3'b101: shifter = mult << 40;
-        3'b110: shifter = mult << 48;
-        3'b111: shifter = mult << 56;
-    endcase
+
+//shifters registers
+always_comb begin
+    if (!reset) begin
+        shifter0 <= mult;
+        shifter8 <= mult << 8;
+        shifter16 <= mult << 16;
+        shifter24 <= mult << 24;
+        shifter32 <= mult << 32;
+        shifter40 <= mult << 40;
+    end
+    else begin
+        shifter0 <= 63'b0;
+        shifter8 <= 63'b0;
+        shifter16 <= 63'b0;
+        shifter24 <= 63'b0;
+        shifter32 <= 63'b0;
+        shifter40 <= 63'b0;
+    end
 end
+
+//mux based on shift_sel to select the output from shifters
+always_comb begin
+    case (shift_sel)
+        3'b000: shifter = shifter0;
+        3'b001: shifter = shifter8;
+        3'b010: shifter = shifter16;
+        3'b011: shifter = shifter24;
+        3'b100: shifter = shifter32;
+        3'b101: shifter = shifter40;
+endcase
+end
+
+//64 bit adder to add the output from shifters
+always_comb begin
+    if (!reset) begin
+        adderReg <= product + shifter;
+    end
+    else begin
+        adderReg <= 64'b0;
+    end
+end
+
+//clear the product register
+always_ff @(posedge clk, posedge reset) begin
+    if (!reset) begin
+        if (clr_prod) begin
+            product <= 64'b0;
+        end
+        else if (upd_prod) begin
+            product <= adderReg;
+        end
+    end
+    else begin
+        product <= 64'b0;
+    end
+end
+
+
+
+
+
+
+
 
 //64bit register
-always_ff @(posedge clk ) begin
-    if (!reset) begin
-        product <= 64'b0;
-    end
-    else if (clr_prod) begin
-        product <= 64'b0;
-    end
-    else if (upd_prod) begin
-        product += shifter;
-    end
 
-
-
-    
-end
 
 
 // End of your code

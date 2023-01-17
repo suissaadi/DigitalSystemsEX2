@@ -40,18 +40,18 @@ module mult32x32_fsm (
 		
 		case (current_state)
 		idle: begin
-			if (start == 1b'1) begin
+			if (start == 1'b1) begin
 				busy = 1'b1;
 				clr_prod = 1'b1;
 				
 				next_state = st_1;
 			end
 		end
-		
+	
 		st_1: begin
 			busy = 1'b1;
-			a_sel = 2'b01;
-			shift_sel = 3'b001;
+			a_sel = 2'b00;
+			shift_sel = 3'b000;
 			upd_prod = 1'b1;
 			
 			next_state = st_2;
@@ -59,8 +59,8 @@ module mult32x32_fsm (
 		
 		st_2: begin
 			busy = 1'b1;
-			a_sel = 2'b10;
-			shift_sel = 3'b010;
+			a_sel = 2'b01;
+			shift_sel = 3'b001;
 			upd_prod = 1'b1;
 			
 			next_state = st_3;
@@ -68,8 +68,8 @@ module mult32x32_fsm (
 		
 		st_3: begin
 			busy = 1'b1;
-			a_sel = 2'b11;
-			shift_sel = 3'b011;
+			a_sel = 2'b10;
+			shift_sel = 3'b010;
 			upd_prod = 1'b1;
 				
 			next_state = st_4;
@@ -77,8 +77,9 @@ module mult32x32_fsm (
 		
 		st_4: begin
 			busy = 1'b1;
-			b_sel = 1'b1;
-			shift_sel = 3'b010;
+			a_sel = 2'b11;
+			b_sel = 1'b0;
+			shift_sel = 3'b011;
 			upd_prod = 1'b1;
 				
 			next_state = st_5;
@@ -86,9 +87,9 @@ module mult32x32_fsm (
 		
 		st_5: begin
 			busy = 1'b1;
-			a_sel = 2'b01;
+			a_sel = 2'b00;
 			b_sel = 1'b1;
-			shift_sel = 3'b011;
+			shift_sel = 3'b010;
 			upd_prod = 1'b1;
 				
 			next_state = st_6;
@@ -96,9 +97,9 @@ module mult32x32_fsm (
 		
 		st_6: begin
 			busy = 1'b1;
-			a_sel = 2'b10;
+			a_sel = 2'b01;
 			b_sel = 1'b1;
-			shift_sel = 3'b100;
+			shift_sel = 3'b011;
 			upd_prod = 1'b1;
 				
 			next_state = st_7;
@@ -106,20 +107,27 @@ module mult32x32_fsm (
 		
 		st_7: begin
 			busy = 1'b1;
-			a_sel = 2'b11;
+			a_sel = 2'b10;
 			b_sel = 1'b1;
-			shift_sel = 3'b101;
+			shift_sel = 3'b100;
 			upd_prod = 1'b1;
 			
 			next_state = st_8;
 		end
 		
 		st_8: begin
+				busy = 1'b1;
+			a_sel = 2'b11;
+			b_sel = 1'b1;
+			shift_sel = 3'b101;
+			upd_prod = 1'b1;
+			
 			next_state = idle;
 		end
 	
-	end
 
+	endcase
+	end
 // End of your code
 
 endmodule

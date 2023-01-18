@@ -83,8 +83,8 @@ mult32x32_fast_arith arith_unit(
     .shift_sel(shift_sel),
     .upd_prod(upd_product),
     .clr_prod(clr_product),
-    .a_msb_is_0(),
-    .b_msw_is_0(),
+    .a_msb_is_0(a_msb_is_0),
+    .b_msw_is_0(b_msw_is_0),
     .product(product)
 );
 

@@ -11,7 +11,7 @@ module mult32x32_fast_test;
 
 // Put your code here
 
-	mult32x32 uut  (.clk(clk), 
+	mult32x32_fast uut  (.clk(clk), 
 					.reset(reset), 
 					.start(start), 
 					.a(a), 
@@ -36,15 +36,21 @@ module mult32x32_fast_test;
 		
 		start = 1'b1;
 		@(posedge clk);
+		start = 1'b0;
 		@(negedge busy);
 		@(posedge clk);
 		
-		a = 841819;
-		b = 585109;
+		//change a such that the most significant two bytes are 0
+		a = { 16'b0, a[15:0] };
+		//change b such that the most significant two bytes are 0
+		b = { 16'b0, b[15:0] };
+	
+		
 		@(posedge clk);
 		
 		start = 1'b1;
 		@(posedge clk);
+		start = 1'b0;
 		@(negedge busy);
 	
 	end

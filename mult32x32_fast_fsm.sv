@@ -34,7 +34,7 @@ module mult32x32_fast_fsm (
 
 		// default assignments:
 		next_state = current_state;
-		//busy = 1'b0;
+		busy = 1'b0;
 		a_sel = 2'b00;
 		b_sel = 1'b0;
 		shift_sel = 3'b000;
@@ -70,17 +70,26 @@ module mult32x32_fast_fsm (
 		end
 		
 		st_3: begin
-			busy = 1'b1;
-			a_sel = 2'b10;
-			shift_sel = 3'b010;
-			upd_prod = 1'b1;
+			if (a_msb_is_0 == 1'b1) begin
+				busy = 1'b1;
+				next_state = idle;
+			end
+			else begin
+				busy = 1'b1;
+				a_sel = 2'b10;
+				shift_sel = 3'b010;
+				upd_prod = 1'b1;
 				
-			next_state = st_4;
+				next_state = st_4;
+			end
+
+
 		end
 		
 		st_4: begin
 		if (a_msb_is_0 == 1'b1 && b_msw_is_0 == 1'b1) begin
 				next_state = idle;
+				busy = 1'b1;
 			end
 			else if (a_msb_is_0 == 1'b1 && b_msw_is_0 == 1'b0) begin
 				busy = 1'b1;
@@ -89,11 +98,12 @@ module mult32x32_fast_fsm (
 			shift_sel = 3'b010;
 			upd_prod = 1'b1;
 				if (b_msw_is_0 == 1'b1) begin
-					busy = 1'b0;
+					busy = 1'b1;
 					next_state = idle;
 				end
 				else begin
 					next_state = st_6;
+					busy = 1'b1;
 				end
 			
 			end
@@ -103,10 +113,11 @@ module mult32x32_fast_fsm (
 				shift_sel = 3'b011;
 				upd_prod = 1'b1;
 				if (b_msw_is_0 == 1'b1) begin
-					busy = 1'b0;
+					busy = 1'b1;
 					next_state = idle;
 				end
 				else begin
+					busy = 1'b1;
 					next_state = st_5;
 				end
 				
@@ -145,12 +156,12 @@ module mult32x32_fast_fsm (
 		
 		st_8: begin
 					if (a_msb_is_0 == 1'b1) begin
-			busy = 1'b0;
+			busy = 1'b1;
 				next_state = idle;
 			end
 			
 			else begin
-			busy = 1'b0;
+			busy = 1'b1;
 			a_sel = 2'b11;
 			b_sel = 1'b1;
 			shift_sel = 3'b101;

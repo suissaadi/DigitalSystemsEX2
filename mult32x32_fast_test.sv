@@ -25,6 +25,7 @@ module mult32x32_fast_test;
 		clk = 1'b0;
 		start = 1'b0;
 		reset = 1'b1;
+		busy = 1'b0;
 		repeat (4) begin
 			@(posedge clk);
 		end

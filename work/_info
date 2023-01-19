@@ -8,10 +8,10 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 dC:/Users/dar18/OneDrive-Technion/Documents/DigitalLibreraies/DigitalSystemsEX2
+Z0 dC:/Users/user/adi's/university/digital/S2/DigitalSystemsEX2
 vmult32x32
 Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
-Z2 !s110 1674143193
+Z2 !s110 1674149185
 !i10b 1
 !s100 ^WbNz:2gd@m8W6Vml=B5d3
 Z3 !s11b Dg1SIo80bB@j0V0VzS_@n1
@@ -19,18 +19,18 @@ I=V<bNW4D109@^8oo>KJbg2
 Z4 VDg1SIo80bB@j0V0VzS_@n1
 S1
 R0
-w1673902670
+Z5 w1673974142
 8mult32x32.sv
 Fmult32x32.sv
-!i122 7
+!i122 2
 L0 2 75
-Z5 OV;L;2020.1;71
+Z6 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z6 !s108 1674143192.000000
-!s107 mult32x32_test.sv|mult32x32_fsm.sv|mult32x32_fast_test.sv|mult32x32_fast_fsm.sv|mult32x32_fast_autotest.sv|mult32x32_fast_arith.sv|mult32x32_fast.sv|mult32x32_autotest.sv|mult32x32_arith.sv|mult32x32.sv|
-Z7 !s90 -reportprogress|300|mult32x32.sv|mult32x32_arith.sv|mult32x32_autotest.sv|mult32x32_fast.sv|mult32x32_fast_arith.sv|mult32x32_fast_autotest.sv|mult32x32_fast_fsm.sv|mult32x32_fast_test.sv|mult32x32_fsm.sv|mult32x32_test.sv|
+Z7 !s108 1674149185.000000
+!s107 mult32x32.sv|
+!s90 -reportprogress|300|mult32x32.sv|
 !i113 1
 Z8 tCvgOpt 0
 vmult32x32_arith
@@ -43,18 +43,18 @@ IdKOLg>OcWJ>dA42E^];TF1
 R4
 S1
 R0
-w1673943069
+R5
 8mult32x32_arith.sv
 Fmult32x32_arith.sv
-!i122 7
+!i122 1
 Z9 L0 2 132
-R5
+R6
 r1
 !s85 0
 31
-R6
-Z10 !s107 mult32x32_test.sv|mult32x32_fsm.sv|mult32x32_fast_test.sv|mult32x32_fast_fsm.sv|mult32x32_fast_autotest.sv|mult32x32_fast_arith.sv|mult32x32_fast.sv|mult32x32_autotest.sv|mult32x32_arith.sv|mult32x32.sv|
 R7
+!s107 mult32x32_arith.sv|
+!s90 -reportprogress|300|mult32x32_arith.sv|
 !i113 1
 R8
 vmult32x32_autotest
@@ -67,138 +67,18 @@ I4WgXB3D8QW3ECn>YLSnba0
 R4
 S1
 R0
-Z11 w1673899532
+w1673890312
 8mult32x32_autotest.sv
 Fmult32x32_autotest.sv
-!i122 7
-Z12 L0 2 60
-R5
+!i122 3
+L0 2 60
+R6
 r1
 !s85 0
 31
-R6
-R10
 R7
-!i113 1
-R8
-vmult32x32_fast
-R1
-R2
-!i10b 1
-!s100 acQXn39[`AAzECDdJNM@D2
-R3
-IU@iEIQW]94?FYEnbIGE:A0
-R4
-S1
-R0
-w1674078851
-8mult32x32_fast.sv
-Fmult32x32_fast.sv
-!i122 7
-L0 2 93
-R5
-r1
-!s85 0
-31
-R6
-R10
-R7
-!i113 1
-R8
-vmult32x32_fast_arith
-R1
-R2
-!i10b 1
-!s100 3d_HCnYdMML3Mn[N5][Ng0
-R3
-IeT[:=1mYhTzBS5?mROaM@3
-R4
-S1
-R0
-w1673946555
-8mult32x32_fast_arith.sv
-Fmult32x32_fast_arith.sv
-!i122 7
-L0 2 147
-R5
-r1
-!s85 0
-31
-R6
-R10
-R7
-!i113 1
-R8
-vmult32x32_fast_autotest
-R1
-R2
-!i10b 1
-!s100 D0c`_KYfQ;zc<K0Q`<CWW0
-R3
-INaEc=b=KiTHY1o7^GYab@2
-R4
-S1
-R0
-R11
-8mult32x32_fast_autotest.sv
-Fmult32x32_fast_autotest.sv
-!i122 7
-R12
-R5
-r1
-!s85 0
-31
-R6
-R10
-R7
-!i113 1
-R8
-vmult32x32_fast_fsm
-R1
-R2
-!i10b 1
-!s100 b9HHK9^WeDOEOgOBC=XN]0
-R3
-II_jE1Qi8^<;I0]c3l@QG]2
-R4
-S1
-R0
-w1674143030
-8mult32x32_fast_fsm.sv
-Fmult32x32_fast_fsm.sv
-!i122 7
-L0 2 310
-R5
-r1
-!s85 0
-31
-R6
-R10
-R7
-!i113 1
-R8
-vmult32x32_fast_test
-R1
-R2
-!i10b 1
-!s100 2:CaSQmVo[[EHoLnGf_:03
-R3
-IK1kg[6>IFlcN?cVK^^C3S1
-R4
-S1
-R0
-w1674141631
-8mult32x32_fast_test.sv
-Fmult32x32_fast_test.sv
-!i122 7
-L0 2 64
-R5
-r1
-!s85 0
-31
-R6
-R10
-R7
+!s107 mult32x32_autotest.sv|
+!s90 -reportprogress|300|mult32x32_autotest.sv|
 !i113 1
 R8
 vmult32x32_fsm
@@ -211,41 +91,17 @@ I;RUQ:BZ6bA[eXW4:;4gXi1
 R4
 S1
 R0
-w1674140895
+w1674144553
 8mult32x32_fsm.sv
 Fmult32x32_fsm.sv
-!i122 7
+!i122 0
 R9
-R5
+R6
 r1
 !s85 0
 31
-R6
-R10
 R7
-!i113 1
-R8
-vmult32x32_test
-R1
-R2
-!i10b 1
-!s100 :]nC:Q]Wn0@EkbU:a`h0P0
-R3
-IO2]5Y2igkaX?hNkPPCZVm2
-R4
-S1
-R0
-w1674140025
-8mult32x32_test.sv
-Fmult32x32_test.sv
-!i122 7
-L0 2 51
-R5
-r1
-!s85 0
-31
-R6
-R10
-R7
+!s107 mult32x32_fsm.sv|
+!s90 -reportprogress|300|mult32x32_fsm.sv|
 !i113 1
 R8
